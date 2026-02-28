@@ -1,25 +1,24 @@
 <template>
-  <div class="page-about container">
-    <ContentDoc path="/about">
-      <template #default="{ doc }">
-        <header class="page-header text-center reveal reveal-delay-2">
-          <h1 class="page-title">{{ doc.title }}</h1>
-          <p class="page-subtitle">{{ doc.subtitle }}</p>
-        </header>
-        
-        <main class="page-content prose reveal reveal-delay-4">
-          <ContentRenderer :value="doc" />
-        </main>
-      </template>
-      <template #not-found>
-        <div class="container text-center" style="padding: 100px 0;">
-          <h2>找不到內容 (Content not found)</h2>
-          <p>請檢查 content/about.md 檔案是否存在。</p>
-        </div>
-      </template>
-    </ContentDoc>
+  <div class="page-about container" v-if="doc">
+    <header class="page-header text-center reveal reveal-delay-2">
+      <h1 class="page-title">{{ doc.title }}</h1>
+      <p class="page-subtitle">{{ doc.subtitle }}</p>
+    </header>
+    
+    <main class="page-content prose reveal reveal-delay-4">
+      <ContentRenderer :value="doc" />
+    </main>
+  </div>
+  <div class="container text-center" style="padding: 100px 0;" v-else>
+    <h2>找不到內容 (Content not found)</h2>
+    <p>請檢查 content/about.md 檔案是否存在。</p>
   </div>
 </template>
+
+<script setup>
+const route = useRoute()
+const { data: doc } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+</script>
 
 <style lang="scss" scoped>
 .page-header {
