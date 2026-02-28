@@ -2,7 +2,8 @@ export default defineNuxtConfig({
     ssr: true,
     nitro: {
         prerender: {
-            routes: ['/', '/about', '/schedule']
+            routes: ['/', '/about', '/schedule'],
+            crawlLinks: true
         }
     },
     modules: [
