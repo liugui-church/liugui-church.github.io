@@ -1,36 +1,34 @@
 <template>
-  <div class="page-home">
-    <ContentDoc path="/">
-      <template #default="{ doc }">
-        <section class="hero container">
-          <h1 class="hero-title reveal reveal-delay-2">{{ doc.title }}</h1>
-          <p class="hero-subtitle reveal reveal-delay-3">{{ doc.subtitle }}</p>
-          <div class="hero-content prose reveal reveal-delay-5">
-            <ContentRenderer :value="doc" />
-          </div>
-        </section>
+  <div class="page-home" v-if="doc">
+    <section class="hero container">
+      <h1 class="hero-title reveal reveal-delay-2">{{ doc.title }}</h1>
+      <p class="hero-subtitle reveal reveal-delay-3">{{ doc.subtitle }}</p>
+      <div class="hero-content prose reveal reveal-delay-5">
+        <ContentRenderer :value="doc" />
+      </div>
+    </section>
 
-        <section class="features container">
-          <div 
-            v-for="(feature, index) in doc.features" 
-            :key="index"
-            class="feature-card reveal"
-            :class="`reveal-delay-${6 + index}`"
-          >
-            <h3 class="feature-title">{{ feature.title }}</h3>
-            <p class="feature-desc">{{ feature.description }}</p>
-          </div>
-        </section>
-      </template>
-      <template #not-found>
-        <div class="container text-center" style="padding: 100px 0;">
-          <h2>找不到首頁內容 (Content not found)</h2>
-          <p>請檢查 content/index.md 檔案是否存在。</p>
-        </div>
-      </template>
-    </ContentDoc>
+    <section class="features container">
+      <div 
+        v-for="(feature, index) in doc.features" 
+        :key="index"
+        class="feature-card reveal"
+        :class="`reveal-delay-${6 + index}`"
+      >
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-desc">{{ feature.description }}</p>
+      </div>
+    </section>
+  </div>
+  <div class="container text-center" style="padding: 100px 0;" v-else>
+    <h2>找不到首頁內容 (Content not found)</h2>
+    <p>請檢查 content/index.md 檔案是否存在。</p>
   </div>
 </template>
+
+<script setup>
+const { data: doc } = await useAsyncData('home', () => queryContent('/').findOne())
+</script>
 
 <style lang="scss" scoped>
 .hero {
