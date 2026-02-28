@@ -1,16 +1,16 @@
 <template>
   <div class="page-schedule container">
     <ContentDoc path="/schedule">
-      <template #default="{ doc }">
-        <div v-if="doc">
+      <template #default="slotProps">
+        <div v-if="slotProps && slotProps.doc">
           <header class="page-header text-center reveal reveal-delay-2">
-            <h1 class="page-title">{{ doc.title }}</h1>
-            <p class="page-subtitle">{{ doc.subtitle }}</p>
+            <h1 class="page-title">{{ slotProps.doc.title }}</h1>
+            <p class="page-subtitle">{{ slotProps.doc.subtitle }}</p>
           </header>
           
           <div class="schedule-grid">
             <main class="page-content prose reveal reveal-delay-4">
-              <ContentRenderer :value="doc" />
+              <ContentRenderer :value="slotProps.doc" />
             </main>
             
             <aside class="schedule-sidebar reveal reveal-delay-6">
@@ -18,15 +18,15 @@
                 <h3>聯絡資訊</h3>
                 <div class="contact-item">
                   <span class="label">地址</span>
-                  <p>{{ doc.location?.address }}</p>
+                  <p>{{ slotProps.doc.location?.address }}</p>
                 </div>
                 <div class="contact-item">
                   <span class="label">電話</span>
-                  <p>{{ doc.location?.phone }}</p>
+                  <p>{{ slotProps.doc.location?.phone }}</p>
                 </div>
                 <div class="contact-item">
                   <span class="label">Email</span>
-                  <p>{{ doc.location?.email }}</p>
+                  <p>{{ slotProps.doc.location?.email }}</p>
                 </div>
               </div>
             </aside>

@@ -1,15 +1,15 @@
 <template>
   <div class="page-about container">
     <ContentDoc path="/about">
-      <template #default="{ doc }">
-        <div v-if="doc">
+      <template #default="slotProps">
+        <div v-if="slotProps && slotProps.doc">
           <header class="page-header text-center reveal reveal-delay-2">
-            <h1 class="page-title">{{ doc.title }}</h1>
-            <p class="page-subtitle">{{ doc.subtitle }}</p>
+            <h1 class="page-title">{{ slotProps.doc.title }}</h1>
+            <p class="page-subtitle">{{ slotProps.doc.subtitle }}</p>
           </header>
           
           <main class="page-content prose reveal reveal-delay-4">
-            <ContentRenderer :value="doc" />
+            <ContentRenderer :value="slotProps.doc" />
           </main>
         </div>
       </template>

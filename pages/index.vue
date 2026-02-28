@@ -1,19 +1,19 @@
 <template>
   <div class="page-home">
     <ContentDoc path="/">
-      <template #default="{ doc }">
-        <div v-if="doc">
+      <template #default="slotProps">
+        <div v-if="slotProps && slotProps.doc">
           <section class="hero container">
-            <h1 class="hero-title reveal reveal-delay-2">{{ doc.title }}</h1>
-            <p class="hero-subtitle reveal reveal-delay-3">{{ doc.subtitle }}</p>
+            <h1 class="hero-title reveal reveal-delay-2">{{ slotProps.doc.title }}</h1>
+            <p class="hero-subtitle reveal reveal-delay-3">{{ slotProps.doc.subtitle }}</p>
             <div class="hero-content prose reveal reveal-delay-5">
-              <ContentRenderer :value="doc" />
+              <ContentRenderer :value="slotProps.doc" />
             </div>
           </section>
 
           <section class="features container">
             <div 
-              v-for="(feature, index) in doc.features" 
+              v-for="(feature, index) in slotProps.doc.features" 
               :key="index"
               class="feature-card reveal"
               :class="`reveal-delay-${6 + index}`"
