@@ -1,0 +1,21 @@
+:root {
+  --color-bg: #FDFBF7;
+  --color-bg-alt: #FFFFFF;
+  --color-text: #2C363F;
+  --color-text-muted: #6B7280;
+  --color-accent: #A67C52;
+  --color-accent-light: #C29A72;
+  --color-border: #E5E1D8;
+
+  --font-heading: 'LXGW WenKai TC', "PMingLiU", "MingLiU", serif;
+  --font-body: 'LXGW WenKai TC', "Microsoft JhengHei", "PingFang TC", sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+}
