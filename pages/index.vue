@@ -28,6 +28,9 @@ useSeoMeta({
               class="feature-card reveal"
               :class="`reveal-delay-${6 + index}`"
             >
+              <div v-if="feature.image" class="feature-image-wrapper">
+                <img :src="feature.image" :alt="feature.title" class="feature-image" />
+              </div>
               <h3 class="feature-title">{{ feature.title }}</h3>
               <p class="feature-desc">{{ feature.description }}</p>
             </div>
@@ -106,13 +109,34 @@ useSeoMeta({
   padding: var(--spacing-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-alt);
-  border-radius: 4px;
+  border-radius: 8px; /* Slightly larger border radius for images */
   transition: transform 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo);
+  overflow: hidden; /* Ensure images don't overflow rounded corners */
+  display: flex;
+  flex-direction: column;
   
   &:hover {
     transform: translateY(-5px);
     border-color: var(--color-accent-light);
   }
+}
+
+.feature-image-wrapper {
+  margin: calc(-1 * var(--spacing-md));
+  margin-bottom: var(--spacing-md);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.feature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.feature-card:hover .feature-image {
+  transform: scale(1.05);
 }
 
 .feature-title {
