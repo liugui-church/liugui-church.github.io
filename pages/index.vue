@@ -1,25 +1,33 @@
 <template>
   <div class="page-home">
-    <ContentDoc v-slot="{ doc }">
-      <section class="hero container">
-        <h1 class="hero-title reveal reveal-delay-2">{{ doc.title }}</h1>
-        <p class="hero-subtitle reveal reveal-delay-3">{{ doc.subtitle }}</p>
-        <div class="hero-content prose reveal reveal-delay-5">
-          <ContentRenderer :value="doc" />
-        </div>
-      </section>
+    <ContentDoc path="/">
+      <template #default="{ doc }">
+        <section class="hero container">
+          <h1 class="hero-title reveal reveal-delay-2">{{ doc.title }}</h1>
+          <p class="hero-subtitle reveal reveal-delay-3">{{ doc.subtitle }}</p>
+          <div class="hero-content prose reveal reveal-delay-5">
+            <ContentRenderer :value="doc" />
+          </div>
+        </section>
 
-      <section class="features container">
-        <div 
-          v-for="(feature, index) in doc.features" 
-          :key="index"
-          class="feature-card reveal"
-          :class="`reveal-delay-${6 + index}`"
-        >
-          <h3 class="feature-title">{{ feature.title }}</h3>
-          <p class="feature-desc">{{ feature.description }}</p>
+        <section class="features container">
+          <div 
+            v-for="(feature, index) in doc.features" 
+            :key="index"
+            class="feature-card reveal"
+            :class="`reveal-delay-${6 + index}`"
+          >
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-desc">{{ feature.description }}</p>
+          </div>
+        </section>
+      </template>
+      <template #not-found>
+        <div class="container text-center" style="padding: 100px 0;">
+          <h2>找不到首頁內容 (Content not found)</h2>
+          <p>請檢查 content/index.md 檔案是否存在。</p>
         </div>
-      </section>
+      </template>
     </ContentDoc>
   </div>
 </template>
