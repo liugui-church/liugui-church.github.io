@@ -1,44 +1,47 @@
 <template>
-  <div class="page-schedule container" v-if="doc">
-    <header class="page-header text-center reveal reveal-delay-2">
-      <h1 class="page-title">{{ doc.title }}</h1>
-      <p class="page-subtitle">{{ doc.subtitle }}</p>
-    </header>
-    
-    <div class="schedule-grid">
-      <main class="page-content prose reveal reveal-delay-4">
-        <ContentRenderer :value="doc" />
-      </main>
-      
-      <aside class="schedule-sidebar reveal reveal-delay-6">
-        <div class="contact-card">
-          <h3>聯絡資訊</h3>
-          <div class="contact-item">
-            <span class="label">地址</span>
-            <p>{{ doc.location?.address }}</p>
-          </div>
-          <div class="contact-item">
-            <span class="label">電話</span>
-            <p>{{ doc.location?.phone }}</p>
-          </div>
-          <div class="contact-item">
-            <span class="label">Email</span>
-            <p>{{ doc.location?.email }}</p>
+  <div class="page-schedule container">
+    <ContentDoc path="/schedule">
+      <template #default="{ doc }">
+        <div v-if="doc">
+          <header class="page-header text-center reveal reveal-delay-2">
+            <h1 class="page-title">{{ doc.title }}</h1>
+            <p class="page-subtitle">{{ doc.subtitle }}</p>
+          </header>
+          
+          <div class="schedule-grid">
+            <main class="page-content prose reveal reveal-delay-4">
+              <ContentRenderer :value="doc" />
+            </main>
+            
+            <aside class="schedule-sidebar reveal reveal-delay-6">
+              <div class="contact-card">
+                <h3>聯絡資訊</h3>
+                <div class="contact-item">
+                  <span class="label">地址</span>
+                  <p>{{ doc.location?.address }}</p>
+                </div>
+                <div class="contact-item">
+                  <span class="label">電話</span>
+                  <p>{{ doc.location?.phone }}</p>
+                </div>
+                <div class="contact-item">
+                  <span class="label">Email</span>
+                  <p>{{ doc.location?.email }}</p>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      </aside>
-    </div>
-  </div>
-  <div class="container text-center" style="padding: 100px 0;" v-else>
-    <h2>找不到內容 (Content not found)</h2>
-    <p>請檢查 content/schedule.md 檔案是否存在。</p>
+      </template>
+      <template #not-found>
+        <div class="container text-center" style="padding: 100px 0;">
+          <h2>找不到內容 (Content not found)</h2>
+          <p>請檢查 content/schedule.md 檔案是否存在。</p>
+        </div>
+      </template>
+    </ContentDoc>
   </div>
 </template>
-
-<script setup>
-const route = useRoute()
-const { data: doc } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
-</script>
 
 <style lang="scss" scoped>
 .page-header {
