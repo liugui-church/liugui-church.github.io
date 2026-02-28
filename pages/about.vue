@@ -1,6 +1,16 @@
+<script setup>
+useHead({
+  title: '認識我們'
+})
+useSeoMeta({
+  ogTitle: '認識我們 - 六龜基督長老教會',
+  ogDescription: '六龜教會創立於主後1960年，走過超過一甲子的恩典脂油。'
+})
+</script>
+
 <template>
   <div class="page-about container">
-    <ContentDoc path="/about">
+    <ContentDoc path="/about" :head="false">
       <template #default="slotProps">
         <div v-if="slotProps && slotProps.doc">
           <header class="page-header text-center reveal reveal-delay-2">

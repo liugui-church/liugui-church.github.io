@@ -1,6 +1,16 @@
+<script setup>
+useHead({
+  title: '六龜基督長老教會'
+})
+useSeoMeta({
+  ogTitle: '六龜基督長老教會',
+  ogDescription: '六龜教會創立於主後1960年，位於高雄市六龜區，是群山環繞中的美麗教會。'
+})
+</script>
+
 <template>
   <div class="page-home">
-    <ContentDoc path="/">
+    <ContentDoc path="/" :head="false">
       <template #default="slotProps">
         <div v-if="slotProps && slotProps.doc">
           <section class="hero container">

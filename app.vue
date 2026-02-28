@@ -6,7 +6,10 @@
 
 <script setup>
 useHead({
-  titleTemplate: '六龜基督長老教會',
-  title: '六龜基督長老教會'
+  titleTemplate: (titleChunk) => {
+    return titleChunk && titleChunk !== '六龜基督長老教會'
+      ? `${titleChunk} - 六龜基督長老教會`
+      : '六龜基督長老教會'
+  }
 })
 </script>

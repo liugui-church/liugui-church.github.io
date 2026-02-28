@@ -27,7 +27,13 @@ export default defineNuxtConfig({
             meta: [
                 { charset: 'utf-8' },
                 { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-                { name: 'description', content: '六龜教會創立於主後1960年，位於高雄市六龜區，是群山環繞中的美麗教會。' }
+                { name: 'description', content: '六龜教會創立於主後1960年，位於高雄市六龜區，是群山環繞中的美麗教會。' },
+                { property: 'og:type', content: 'website' },
+                { property: 'og:site_name', content: '六龜基督長老教會' },
+                { property: 'og:title', content: '六龜基督長老教會' },
+                { property: 'og:description', content: '六龜教會創立於主後1960年，位於高雄市六龜區，是群山環繞中的美麗教會。' },
+                { property: 'og:url', content: 'https://liugui-church.github.io/' },
+                { property: 'og:locale', content: 'zh_TW' }
             ],
             htmlAttrs: {
                 lang: 'zh-TW'

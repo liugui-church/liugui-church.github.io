@@ -1,6 +1,16 @@
+<script setup>
+useHead({
+  title: '聚會時間'
+})
+useSeoMeta({
+  ogTitle: '聚會時間 - 六龜基督長老教會',
+  ogDescription: '邀請您一同來經歷神的同在，了解我們的聚會時間與地點。'
+})
+</script>
+
 <template>
   <div class="page-schedule container">
-    <ContentDoc path="/schedule">
+    <ContentDoc path="/schedule" :head="false">
       <template #default="slotProps">
         <div v-if="slotProps && slotProps.doc">
           <header class="page-header text-center reveal reveal-delay-2">
