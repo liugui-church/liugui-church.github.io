@@ -10,9 +10,6 @@ useSeoMeta({
 
 <template>
   <div class="page-home">
-    <!-- 烏龜動畫組件 -->
-    <TurtleAnimation />
-
     <ContentDoc path="/" :head="false">
       <template #default="slotProps">
         <div v-if="slotProps && slotProps.doc">
@@ -51,11 +48,6 @@ useSeoMeta({
 </template>
 
 <style lang="scss" scoped>
-.page-home {
-  position: relative;
-  overflow-x: hidden;
-}
-
 
 
 .hero {
